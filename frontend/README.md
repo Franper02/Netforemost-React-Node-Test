@@ -24,4 +24,18 @@ Luego solo hay algunos archivos basicos, la mayoria de los componentes se encuen
 
 Para los estilos se utilizó `Tailwind.css` y `Framer-motion` para las animaciones.
 
+Para correr el proyecto se deben seguir los siguientes pasos:
+
+1. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+2. Correr la aplicación:
+
+```bash
+npm run dev
+```
+
 Muchas gracias! 🚀
