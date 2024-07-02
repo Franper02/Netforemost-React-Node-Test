@@ -1,0 +1,14 @@
+type Article {
+  _id: ID!
+  author: String!
+  description: String!
+  publishedAt: String!
+  title: String!
+  url: String!
+  urlToImage: String!
+}
+
+type Query {
+  getAllArticles: [Article]
+  searchArticle(searchQuery: String!): [Article]
+}

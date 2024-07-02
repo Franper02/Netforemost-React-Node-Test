@@ -1,0 +1,51 @@
+overwrite: true
+schema: ./introspection.json
+generates:
+  ./src/graphql-generated/fragments/fragmentTypes.generated.ts:
+    plugins:
+      - add:
+          content: /* eslint-disable */
+      - fragment-matcher
+    config:
+      minify: false
+      apolloClientVersion: 3
+  ./src/graphql-generated/typePolicies/typePolicies.generated.ts:
+    plugins:
+      - add:
+          content: /* eslint-disable */
+      - typescript-apollo-client-helpers
+  ./src/graphql-generated/types/types.generated.ts:
+    documents:
+      - ./src/**/queries.ts
+      - ./src/**/mutations.ts
+      - ./src/**/fragments/*.ts
+    config:
+      nonOptionalTypename: true
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: false
+        defaultValue: false
+      namingConvention:
+        enumValues: change-case-all#upperCase
+      onlyOperationTypes: true
+    plugins:
+      - add:
+          content: /* eslint-disable */
+      - typescript
+      - typescript-operations
+  ./src/graphql-generated/hooks/hooks.generated.ts:
+    documents:
+      - ./src/**/queries.ts
+      - ./src/**/mutations.ts
+      - ./src/**/fragments/*.ts
+    preset: import-types
+    presetConfig:
+      typesPath: ../types/types.generated
+    config:
+      withHooks: true
+      apolloReactHooksImportFrom: "../../graphql-generated"
+    plugins:
+      - add:
+          content: /* eslint-disable */
+      - typescript-react-apollo
